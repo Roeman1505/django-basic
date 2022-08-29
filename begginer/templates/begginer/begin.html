@@ -1,0 +1,41 @@
+{% extends 'main.html'%}
+
+{% block content%}
+
+<h1>Django Template</h1>
+<h1>Name:{{name}}</h1>
+<!--{% if age > 22 %}
+ <h4>{{name}} is greater than {{age}} years old</h4>
+
+ {% elif age == 22 %}
+ <h2>{{name}} is equal to {{age}} years old</h2>
+
+ {% else %}
+ <h2>{{name}} is under {{age}} years old</h2>
+
+{%endif%}
+-->
+
+<table>
+    <thead>
+        <tr>
+          
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+        <tr>
+          
+            <td><a href="{% url 'project' project.id %}">{{ project.title }} {% if project.topRated%}</a><strong>TOP RATED</strong>{% endif %}</td>
+            <td>{{ project.description }}</td>
+            <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
+            <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content%}
